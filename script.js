@@ -18,6 +18,7 @@ let totalMines = 0;
 let timer = null;
 let secondsElapsed = 0;
 let gameActive = false;
+let boardGenerated = false;
 
 function startGame() {
     const { rows, cols, mines } = difficulties[difficultySelect.value];
@@ -32,6 +33,7 @@ function startGame() {
     clearInterval(timer);
     timer = null;
     gameActive = true;
+    boardGenerated = false;
 
     board = Array.from({ length: rows }, (_, row) =>
         Array.from({ length: cols }, (_, col) => ({
@@ -45,18 +47,17 @@ function startGame() {
         }))
     );
 
-    placeMines(mines);
-    calculateAdjacents();
     renderBoard();
 }
 
-function placeMines(mines) {
+function placeMines(mines, initialCell) {
     const { rows, cols } = difficulties[difficultySelect.value];
     let placed = 0;
     while (placed < mines) {
         const row = Math.floor(Math.random() * rows);
         const col = Math.floor(Math.random() * cols);
-        if (!board[row][col].mine) {
+        const candidate = board[row][col];
+        if (!candidate.mine && candidate !== initialCell) {
             board[row][col].mine = true;
             placed++;
         }
@@ -117,6 +118,12 @@ function handleReveal(event) {
     const cell = getCellFromElement(event.currentTarget);
     if (!cell || !gameActive) return;
     if (cell.revealed || cell.flagged) return;
+
+    if (!boardGenerated) {
+        placeMines(totalMines, cell);
+        calculateAdjacents();
+        boardGenerated = true;
+    }
 
     if (!timer) {
         timer = setInterval(() => {
