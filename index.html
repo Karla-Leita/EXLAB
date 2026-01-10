@@ -3,56 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen en Línea</title>
+    <title>Mini Videojuego: Caza Estrellas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Examen en Línea</h1>
-        <div id="login-form">
-            <h2>Iniciar Sesión</h2>
-            <input type="email" id="email" placeholder="Correo electrónico" required><br>
-            <input type="password" id="password" placeholder="Contraseña" required><br>
-            <button id="login-btn">Iniciar Sesión</button>
+    <main class="game-shell">
+        <header class="game-header">
+            <div>
+                <h1>Caza Estrellas</h1>
+                <p>Recoge estrellas y evita meteoritos. ¡Llega a la mejor puntuación!</p>
+            </div>
+            <button id="start-btn" class="primary">Iniciar partida</button>
+        </header>
+
+        <section class="hud">
+            <div class="hud-item">
+                <span class="label">Puntuación</span>
+                <span id="score">0</span>
+            </div>
+            <div class="hud-item">
+                <span class="label">Vidas</span>
+                <span id="lives">3</span>
+            </div>
+            <div class="hud-item">
+                <span class="label">Nivel</span>
+                <span id="level">1</span>
+            </div>
+        </section>
+
+        <div class="game-stage">
+            <canvas id="game" width="820" height="460" aria-label="Zona del juego"></canvas>
+            <div id="overlay" class="overlay">
+                <h2>Listo para jugar</h2>
+                <p>Usa <strong>WASD</strong> o las flechas para moverte.</p>
+                <p>Recoge estrellas amarillas (+10) y evita meteoritos rojos (-1 vida).</p>
+                <p>Presiona iniciar para comenzar.</p>
+            </div>
         </div>
-        <div id="exam-form" style="display:none;">
-            <h2>Examen</h2>
-            <form id="examForm">
-                <div class="question">
-                    <label>1. Lorem ipsum dolor sit amet?</label><br>
-                    <input type="radio" name="q1" value="a"> Opción A<br>
-                    <input type="radio" name="q1" value="b"> Opción B<br>
-                    <input type="radio" name="q1" value="c"> Opción C<br>
-                </div>
-                <div class="question">
-                    <label>2. Consectetur adipiscing elit?</label><br>
-                    <input type="radio" name="q2" value="a"> Opción A<br>
-                    <input type="radio" name="q2" value="b"> Opción B<br>
-                    <input type="radio" name="q2" value="c"> Opción C<br>
-                </div>
-                <div class="question">
-                    <label>3. Sed do eiusmod tempor incididunt?</label><br>
-                    <input type="radio" name="q3" value="a"> Opción A<br>
-                    <input type="radio" name="q3" value="b"> Opción B<br>
-                    <input type="radio" name="q3" value="c"> Opción C<br>
-                </div>
-                <div class="question">
-                    <label>4. Ut labore et dolore magna aliqua?</label><br>
-                    <input type="radio" name="q4" value="a"> Opción A<br>
-                    <input type="radio" name="q4" value="b"> Opción B<br>
-                    <input type="radio" name="q4" value="c"> Opción C<br>
-                </div>
-                <div class="question">
-                    <label>5. Ut enim ad minim veniam?</label><br>
-                    <input type="radio" name="q5" value="a"> Opción A<br>
-                    <input type="radio" name="q5" value="b"> Opción B<br>
-                    <input type="radio" name="q5" value="c"> Opción C<br>
-                </div>
-                <button type="submit">Enviar Respuestas</button>
-            </form>
-        </div>
-        <div id="result" style="display:none;"></div>
-    </div>
+
+        <section class="controls">
+            <div>
+                <h3>Controles</h3>
+                <ul>
+                    <li>⬅️ ➡️ ⬆️ ⬇️ o WASD para mover la nave.</li>
+                    <li>Espacio para pausar o reanudar.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Objetivo</h3>
+                <p>Alcanza la mayor puntuación posible antes de quedarte sin vidas.</p>
+            </div>
+        </section>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
