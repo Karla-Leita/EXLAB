@@ -3,55 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen en Línea</title>
+    <title>Buscaminas Clásico</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Examen en Línea</h1>
-        <div id="login-form">
-            <h2>Iniciar Sesión</h2>
-            <input type="email" id="email" placeholder="Correo electrónico" required><br>
-            <input type="password" id="password" placeholder="Contraseña" required><br>
-            <button id="login-btn">Iniciar Sesión</button>
-        </div>
-        <div id="exam-form" style="display:none;">
-            <h2>Examen</h2>
-            <form id="examForm">
-                <div class="question">
-                    <label>1. Lorem ipsum dolor sit amet?</label><br>
-                    <input type="radio" name="q1" value="a"> Opción A<br>
-                    <input type="radio" name="q1" value="b"> Opción B<br>
-                    <input type="radio" name="q1" value="c"> Opción C<br>
+    <div class="app">
+        <header class="top-bar">
+            <h1>Buscaminas</h1>
+            <div class="controls">
+                <label for="difficulty">Dificultad:</label>
+                <select id="difficulty">
+                    <option value="easy">Principiante (9 x 9, 10 minas)</option>
+                    <option value="medium">Intermedio (16 x 16, 40 minas)</option>
+                    <option value="hard">Experto (16 x 30, 99 minas)</option>
+                </select>
+                <button id="reset-btn">Nuevo juego</button>
+            </div>
+            <div class="status-panel">
+                <div class="status-item">
+                    <span class="status-label">⛯ Minas:</span>
+                    <span id="mines-left" class="status-value">000</span>
                 </div>
-                <div class="question">
-                    <label>2. Consectetur adipiscing elit?</label><br>
-                    <input type="radio" name="q2" value="a"> Opción A<br>
-                    <input type="radio" name="q2" value="b"> Opción B<br>
-                    <input type="radio" name="q2" value="c"> Opción C<br>
+                <div class="status-item">
+                    <span class="status-label">⏱️ Tiempo:</span>
+                    <span id="timer" class="status-value">000</span>
                 </div>
-                <div class="question">
-                    <label>3. Sed do eiusmod tempor incididunt?</label><br>
-                    <input type="radio" name="q3" value="a"> Opción A<br>
-                    <input type="radio" name="q3" value="b"> Opción B<br>
-                    <input type="radio" name="q3" value="c"> Opción C<br>
-                </div>
-                <div class="question">
-                    <label>4. Ut labore et dolore magna aliqua?</label><br>
-                    <input type="radio" name="q4" value="a"> Opción A<br>
-                    <input type="radio" name="q4" value="b"> Opción B<br>
-                    <input type="radio" name="q4" value="c"> Opción C<br>
-                </div>
-                <div class="question">
-                    <label>5. Ut enim ad minim veniam?</label><br>
-                    <input type="radio" name="q5" value="a"> Opción A<br>
-                    <input type="radio" name="q5" value="b"> Opción B<br>
-                    <input type="radio" name="q5" value="c"> Opción C<br>
-                </div>
-                <button type="submit">Enviar Respuestas</button>
-            </form>
-        </div>
-        <div id="result" style="display:none;"></div>
+            </div>
+        </header>
+        <main>
+            <div id="message" role="status" aria-live="polite"></div>
+            <div id="board" class="board" role="grid" aria-label="Tablero de buscaminas"></div>
+        </main>
+        <footer>
+            <p>Haz clic para descubrir una casilla. Usa clic derecho o pulsa <kbd>F</kbd> con una casilla seleccionada para marcar o desmarcar una bandera.</p>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>
